@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        HOST_UID: ${UID}
+        HOST_GID: ${GID}
+        PHP_VERSION: ${PHP_VERSION:-8.1}
+    container_name: slims-web
+    ports:
+      - "9090:80"
+    volumes:
+      - .:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.5
+    container_name: slims-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: slims
+      MYSQL_USER: slimsuser
+      MYSQL_PASSWORD: slimspass
