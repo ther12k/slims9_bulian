@@ -1,43 +1,45 @@
 //main: style.less
-table {
+table.s-table {
   width: 100%;
-  background: #fff;
-  margin-bottom: 0 !important;  
+  background: @white;
+  margin-bottom: 1rem !important;
+  border: 1px solid @border-color;
+  border-radius: @border-radius;
+  box-shadow: 0 1px 3px rgba(0,0,0,.03);
 }
 
 #dataList {
 	position: relative;
-  
   td {
-    padding: 10px;  
+    padding: .75rem;
+    vertical-align: middle;
   }
 }
 
-.s-table__no-data {
-
-}
-
 .dataListHeader {
-  background: transparent;
+  background: lighten(@bg-color, 2%);
   td {
     text-transform: uppercase !important;
-    background: #fff;
+    background: lighten(@bg-color, 2%);
     white-space: nowrap;
-    font-size: 10pt;
-    padding: 7px 15px;
-    border-bottom: solid 1px @border-color;
+    font-size: 9pt;
+    font-weight: 700;
+    padding: .75rem 1rem;
+    border-bottom: 2px solid @border-color;
+    color: darken(@primary-blue, 10%);
   }
 
   a {
     white-space: nowrap;
+    color: inherit;
   }
 
   & a[href*='ASC']:after,
   & a[href*='DESC']:after {
     font-family: 'FontAwesome';
     content: "\f0d8";
-    padding-left: 3px;
-    font-size: 12px;
+    padding-left: 5px;
+    font-size: 14px;
   }
 
   & a[href*='ASC']:after {
@@ -47,31 +49,34 @@ table {
   & a[href*='DESC']:after {
     content: "\f0d7";
   }
-  
 }
 
 #mainForm {
   & > table {
-    border-top: solid 1px #eee;
+    border: 1px solid @border-color;
+    box-shadow: 0 1px 3px rgba(0,0,0,.03);
   }
   & td {
-    padding: 10px 15px;
+    padding: 1rem;
   }
-}  
+}
+
 .alterCell,
 .alterCell2 {
-  background-color: #fff !important;
-  border-color: @border-color;
+  background-color: @white !important;
+  border-bottom: 1px solid @border-color;
 
-  &:hover{
-    background-color: #fbfbfb !important;
-    transition: all 1 ease-in-out;
-
+  &:hover {
+    background-color: @bg-color !important;
   }
+}
 
-  &.highlighted {
-    background: lighten(@color-2,40%) !important;
-    background-color: lighten(@color-3,40%);
-    color: @color-1 !important;
-  }
+.alterCell2 {
+   // No difference needed for this theme
+}
+
+.alterCell.highlighted,
+.alterCell2.highlighted {
+  background: lighten(@accent-yellow, 30%) !important;
+  color: @primary-blue !important;
 }

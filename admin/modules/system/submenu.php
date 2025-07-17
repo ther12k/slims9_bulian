@@ -25,35 +25,28 @@ do_checkIP('smc-system');
 
 global $sysconf;
 
-$menu[] = array('Header', __('CONFIGURATION'));
+$menu[] = array('Header', __('System'));
 // only administrator have privileges for below menus
 if ($_SESSION['uid'] == 1) {
     $menu[] = array(__('System Configuration'), MWB.'system/index.php', __('Configure Global System Preferences'));
-    $menu[] = array(__('System Environment'), MWB.'system/envinfo.php', __('Information about System Environment'));
-    $menu[] = array(__('System Environment Setting'), MWB.'system/envsetting.php', __('Configure System Environment Mode'));
-    $menu[] = array(__('UCS Setting'), MWB.'system/ucsetting.php', __('Configure UCS Preferences'));
-    $menu[] = array(__('Theme'), MWB.'system/theme.php', __('Configure theme Preferences'));
-    $menu[] = array(__('Plugins'), MWB . 'system/plugins.php');
-    $menu[] = array(__('Custom Field'), MWB.'system/custom_field.php', __('Configure custom field'));
-    $menu[] = array(__('Currency Setting'), MWB.'system/currencysetting.php', __('Configure System Currency'));
-    $menu[] = array(__('E-Mail Setting'), MWB.'system/mailsetting.php', __('Configure E-Mail Preferences'));
-    $menu[] = array(__('Captcha Setting'), MWB.'system/captchasetting.php', __('Configure Captcha'));
-}
-$menu[] = array(__('Content'), MWB.'system/content.php', __('Content'));
-// only administrator have privileges for below menus
-if ($_SESSION['uid'] == 1) {
-    if ($sysconf['index']['engine']['enable']) {
-      $menu[] = array(__('Biblio Indexes'), MWB.'system/biblio_indexes_'.$sysconf['index']['engine']['type'].'.php', __('Bibliographic Indexes management'));
-    } else {
-      $menu[] = array(__('Biblio Indexes'), MWB.'system/biblio_indexes.php', __('Bibliographic Indexes management'));
-    }
+    $menu[] = array(__('Themes'), MWB.'system/theme.php', __('Configure theme Preferences'));
     $menu[] = array(__('Modules'), MWB.'system/module.php', __('Configure Application Modules'));
-    $menu[] = array(__('User Group'), MWB.'system/user_group.php', __('Manage Group of Application User'));
-    $menu[] = array(__('Librarian & System Users'), MWB.'system/app_user.php', __('Manage Application User or Library Staff'));
-    
+    $menu[] = array(__('User Groups'), MWB.'system/user_group.php', __('Manage Group of Application User'));
 }
-$menu[] = array(__('Shortcut Setting'), MWB.'system/shortcut.php', __('Shortcut Setting'));
-$menu[] = array(__('Holiday Setting'), MWB.'system/holiday.php', __('Configure Holiday Setting'));
-$menu[] = array(__('Barcode Generator'), MWB.'system/barcode_generator.php', __('Barcode Generator'));
+
+$menu[] = array(__('Librarian/Users'), MWB.'system/app_user.php', __('Manage Application User or Library Staff'));
+$menu[] = array(__('Holiday Settings'), MWB.'system/holiday.php', __('Configure Holiday Setting'));
+$menu[] = array(__('Content'), MWB.'system/content.php', __('Content'));
+$menu[] = array(__('Shortcut Settings'), MWB.'system/shortcut.php', __('Shortcut Setting'));
 $menu[] = array(__('System Log'), MWB.'system/sys_log.php', __('View Application System Log'));
 $menu[] = array(__('Database Backup'), MWB.'system/backup.php', __('Backup Application Database'));
+$menu[] = array('Header', __('Tools'));
+$menu[] = array(__('Barcode Generator'), MWB.'system/barcode_generator.php', __('Barcode Generator'));
+$menu[] = array(__('Biblio Indexes'), MWB.'system/biblio_indexes.php', __('Bibliographic Indexes management'));
+
+if ($_SESSION['uid'] == 1) {
+    $menu[] = array(__('System Environment'), MWB.'system/envinfo.php', __('Information about System Environment'));
+    $menu[] = array(__('UCS Settings'), MWB.'system/ucsetting.php', __('Configure UCS Preferences'));
+    $menu[] = array(__('Custom Fields'), MWB.'system/custom_field.php', __('Configure custom field'));
+    $menu[] = array(__('Plugins'), MWB . 'system/plugins.php');
+}

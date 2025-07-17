@@ -4,43 +4,45 @@ sidebar
 --------------------*/
 #sidepan {
   bottom: 0;
-  z-index: 0;
+  z-index: 1030;
   overflow: auto;
   position: fixed;
   top: 0;
   width: @sidebar-width;
   background-color: @sidebar;
-
-  &:before {
-    top: 0;
-    left: 0;
-    z-index: 0;
-    content: '';
-    height: 940px;
-    position: absolute;
-    width: @sidebar-width;
-    background: url(media/bg.jpg);
-    background-size: cover;
-    opacity: 0.15;
-  }
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
   .subMenuHeader,
   .subMenuItem {
-    color: @white;
-    display: block;
-    padding: 3px 10px;
+    color: lighten(@white, 15%);
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
     position: relative;
     font-size: @font-size;
     font-family: @font-family;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
   .subMenuHeader {
-    padding-left: 16px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: lighten(@sidebar, 40%);
+    padding-top: 20px;
+    padding-bottom: 10px;
   }
 
   .subMenuItem {
-    margin: 4px 0 0 4px;
-    transition: ease-in all 0.1s;
+    margin: 2px 0;
+
+    &:before {
+        font-family: 'FontAwesome';
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+    }
   }
 
   .scrollbar-track.scrollbar-track-x.show {
@@ -52,44 +54,26 @@ sidebar
     color: @white;
   }
 
-  .subMenuItem:first-child,
-  .curModuleLink {
-    background-color: #fafafa !important;
-    color: @color-3;
-    border-radius: 20px 0 0 20px;
-    padding-left: 16px;
-  }
+  a.subMenuItem[href*="bibliography/index.php"]:before { content: '\f02d'; }
+  a.subMenuItem[href*="circulation/index.php"]:before { content: '\f0ec'; }
+  a.subMenuItem[href*="membership/index.php"]:before { content: '\f0c0'; }
+  a.subMenuItem[href*="master_file/index.php"]:before { content: '\f02e'; }
+  a.subMenuItem[href*="serial_control/index.php"]:before { content: '\f0e8'; }
+  a.subMenuItem[href*="reporting/index.php"]:before { content: '\f080'; }
+  a.subMenuItem[href*="stock_take/index.php"]:before { content: '\f0ae'; }
+  a.subMenuItem[href*="system/index.php"]:before { content: '\f013'; }
+  a.subMenuItem[href*="home.php"]:before,
+  a.subMenuItem[href="index.php"]:before { content: '\f015'; }
 
-  .subMenuItem:first-child {
-    color: @color-2;
-    border-radius: 50%;
+
+  .curModuleLink {
+    background-color: @sidebar-active-bg !important;
+    color: @white;
+    font-weight: 700;
   }
 
   .subMenuItem:not(.curModuleLink):hover {
-    background-color: rgba(255,255,255, 0.4) !important;
-    border-radius: 20px 0 0 20px;
-    padding-left: 16px;
-  }
-
-  .subMenuItem:not(.curModuleLink):focus {
-    background-color: rgba(255,255,255, 0.6) !important;
-    border-radius: 20px 0 0 20px;
-    padding-left: 16px;
-  }
-
-  .scroll-content {
-    .subMenuHeader {
-      font-size: 10px;
-      margin-top: 16px;
-      padding-top: 20px;
-      padding-bottom: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.3);
-      font-weight: normal;
-    }
-
-    .subMenuHeader-0 {
-      border: none;
-      margin-top: 0;
-    }
+    background-color: fade(@white, 10%);
+    color: @white;
   }
 }

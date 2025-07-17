@@ -1,31 +1,39 @@
 //main: style.less
-@white  : #ffffff;
-@black  : #000000;
+@white: #ffffff;
+@black: #212529;
 
-@color-1: @black;
-@color-2: #c54545;
-@color-3: #00a9ff;
-@color-4: #004db6;
+// HighScope Palette
+@color-1: #212529; // Primary Text
+@color-2: #c54545; // Error/Red
+@color-3: #00a8b3; // Accent Teal
+@color-4: #2e3956; // Sidebar Background
 @color-5: @white;
-@color-6: lighten(@black, 98%);
+@color-6: #f8f9fa; // Main Content Background
 
-@bg-color: @color-5;
-@bg-menu: @white;
+// Custom Colors
+@primary-blue: #2e3956;
+@light-blue: #eef5ff;
+@accent-yellow: #ffc107;
+@border-color-light: #dee2e6;
+@sidebar-active-bg: #4f5f8a;
+
+@bg-color: @color-6;
+@bg-menu: @light-blue;
 @bg-error: @color-2;
 
 @font-size:10pt;
-@font-line-height:1.8;
+@font-line-height:1.5;
 @font-family:'Quicksand', sans-serif;
 @font-color: @color-1;
-@font-color-anchor: @color-5;
+@font-color-anchor: @primary-blue;
 
-@sidebar: @color-4;
-@sidebar-header-text-color: @color-1;
-@sidebar-width: 225px;
+@sidebar: @primary-blue;
+@sidebar-header-text-color: @white;
+@sidebar-width: 250px;
 
-@border-radius: 3px;
-@border-color: lighten(@black, 95%);
+@border-radius: .25rem;
+@border-color: @border-color-light;
 
-@menu-padding: 15px;
-@menu-anchor-color: @color-1;
-@menu-anchor-color-hover: @color-3;
+@menu-padding: 1rem 1.5rem;
+@menu-anchor-color: @primary-blue;
+@menu-anchor-color-hover: @primary-blue;

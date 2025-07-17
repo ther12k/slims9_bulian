@@ -1,11 +1,13 @@
 //main: style.less
 
 #mainContent {
-  overflow: hidden;
+  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-x: hidden;
   position: relative;
   margin-left: @sidebar-width;
-  background: @color-6;
-  min-height: 550px;
+  background: @bg-color;
+  min-height: calc(100vh - 70px - 55px - 51px); /* Viewport height - header - menu - footer */
+  padding: 1.5rem;
 }
 
 .loader {
@@ -15,22 +17,22 @@
 	justify-content: center;
 	position: absolute;
 	top: 70px;
-	left: 225px;
-	width: calc(100% - 225px);
+	left: @sidebar-width;
+	width: calc(100% - @sidebar-width);
 	text-align: left;
 	z-index: 999;
 	> div {
 		width: 100%;
 		height: 1px;
-		background-color: @color-1;
+		background-color: @primary-blue;
 		display: inline-block;
 		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 		&:nth-child(1) {
-			background-color: @color-5;
+			background-color: @accent-yellow;
 		}
 		&:nth-child(3) {
-			background-color: @color-3;
+			background-color: @accent-teal;
 		}
 	}
 	.bounce1 {
@@ -48,25 +50,35 @@
 }
 
 .per_title {
-	padding: 20px 15px;
+	padding: 1rem;
+    background-color: @white;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.03);
 
   h2 {
-    font-size: 18pt;
+    font-size: 16pt;
     font-weight: 700;
-    color: @color-1;
+    color: @primary-blue;
+    margin: 0;
   }
-
 }
 
 .sub_section {
-  padding: 20px 15px;
+  padding: 1rem;
+  background-color: @white;
+  border: 1px solid @border-color;
+  border-radius: @border-radius;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,.03);
 
-  .btn-group { 
+  .btn-group {
     position: absolute;
-    top: 20px;
-    right: 15px;
+    top: 1rem;
+    right: 1rem;
   }
-
 }
 
 .s-margin__bottom-1 {
