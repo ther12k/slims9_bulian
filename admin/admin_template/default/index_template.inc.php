@@ -56,64 +56,42 @@
     <?php if($sysconf['chat_system']['enabled']) : ?>
     <script src="<?php echo JWB; ?>fancywebsocket.js"></script>
     <?php endif; ?>
+    <style>
+        .s-user:after,
+        #sidepan {
+            background-color: <?= $sysconf['admin_template']['default_color']??'#004db6'; ?> !important;
+        }
+        #sidepan .scroll-content {
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
 
 <header id="header">
-    <div id="header-left">
-        <!-- Optional left-aligned content -->
-    </div>
-    <div id="header-right" class="d-flex align-items-center">
-        <!-- In a real implementation, this would be dynamic -->
-        <div class="dropdown mr-3">
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="schoolUnitDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            SHI TB. Simatupang
-          </button>
-          <div class="dropdown-menu" aria-labelledby="schoolUnitDropdown">
-            <a class="dropdown-item" href="#">Another School</a>
-          </div>
-        </div>
-        <a href="#" class="text-secondary mr-3"><i class="fa fa-bell-o"></i></a>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-dark" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="s-user-photo mr-2">
-                    <?php
-                    if (filter_var($_SESSION['upict'], FILTER_VALIDATE_URL)) {
-                        $user_image_url = $_SESSION['upict'];
-                    } else {
-                        $user_image = $_SESSION['upict'] && file_exists(IMGBS . 'persons/' . $_SESSION['upict']) ? $_SESSION['upict'] : 'person.png';
-                        $user_image_url = '../lib/minigalnano/createthumb.php?filename=' . IMG . '/persons/' . urlencode(urlencode($user_image)) . '&width=40';
-                    }
-                    ?>
-                    <img src="<?= $user_image_url ?>" alt="User Photo">
-                </div>
-                <div>
-                    <div class="font-weight-bold"><?php echo $_SESSION['realname']?></div>
-                    <small class="text-muted"><?php echo isset($_SESSION['nname']) ? $_SESSION['nname'] : __('Librarian'); ?></small>
-                </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="<?php echo MWB.'system/app_user.php?changecurrent=true&action=detail'; ?>"><?= __('Profile') ?></a>
-                <a class="dropdown-item" href="<?php echo SWB.'admin/logout.php'; ?>"><?= __('Logout') ?></a>
-            </div>
-        </div>
-    </div>
+    <nav id="mainMenu">
+        <?php echo $main_menu; ?>
+    </nav>
 </header>
-
-<nav id="mainMenu">
-    <?php echo $main_menu; ?>
-</nav>
 
 <nav id="sidepan">
     <div class="s-user" id="profile">
-        <a href="<?php echo MWB.'system/app_user.php?changecurrent=true&action=detail'; ?>" class="subMenuItem">
-            <div class="s-user-photo">
+        <div class="s-user-frame">
+            <a href="<?php echo MWB.'system/app_user.php?changecurrent=true&action=detail'; ?>" class="s-user-photo subMenuItem">
+                <?php
+                if (filter_var($_SESSION['upict'], FILTER_VALIDATE_URL)) {
+                    $user_image_url = $_SESSION['upict'];
+                } else {
+                    $user_image = $_SESSION['upict'] && file_exists(IMGBS . 'persons/' . $_SESSION['upict']) ? $_SESSION['upict'] : 'person.png';
+                    $user_image_url = '../lib/minigalnano/createthumb.php?filename=' . IMG . '/persons/' . urlencode(urlencode($user_image)) . '&width=200';
+                }
+                ?>
                 <img src="<?= $user_image_url ?>" alt="Photo <?php echo $_SESSION['realname'] ?>">
-            </div>
-            <div class="s-user-name-container">
-                <span class="s-user-name"><?php echo $_SESSION['realname']?></span>
-                <span class="s-user-role"><?php echo isset($_SESSION['nname']) ? $_SESSION['nname'] : __('Librarian'); ?></span>
-            </div>
+            </a>
+        </div>
+        <a href="<?php echo MWB.'system/app_user.php?changecurrent=true&action=detail'; ?>">
+        <h4 class="s-user-name"><?php echo $_SESSION['realname']?></h4>
+        <?php echo isset($_SESSION['nname']) ? $_SESSION['nname'] : __('Librarian'); ?>
         </a>
     </div>
 
@@ -194,7 +172,7 @@ $('.s-close').click(function(e){
     let get_url       = $(this).attr('href');
     let path_array    = get_url.split('/');
     let clean_path    = path_array[path_array.length-1].split('.');
-    let new_pathname  = '<?php echo AWB?>help.php?url='+path_array[path_array.length-2]+'/'+clean_path+'.md';
+    let new_pathname  = '<?php echo AWB?>help.php?url='+path_array[path_array.length-2]+'/'+clean_path[0]+'.md';
     $('.s-help').attr('href', new_pathname);
   });
 </script>
